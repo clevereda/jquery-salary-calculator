@@ -1,3 +1,40 @@
-.employeeTab{
-    display: block;
+
+h1{
+    text-align: center;
+    background-color: lightsteelblue;
+}
+
+
+body{
+    background-color: rgb(240, 230, 216);
+}
+
+
+table{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 1px solid grey;
+    padding: 7px;
+    border-radius: 7px;
+}
+
+th td {
+    border-bottom: 1px solid grey;
+    padding: 7px;
+}
+
+thead{
+    background-color:indigo;
+    color: white;
+
+}
+
+td{
+    text-align: center;
+    border-bottom: 1px solid grey;
+}
+
+tr:last-child td {
+    border-bottom: 0px;
 }

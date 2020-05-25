@@ -1,4 +1,4 @@
-$(document).ready(realready);
+
 let totalMonthly = 0;
 
 //function real ready
@@ -21,11 +21,19 @@ $('.submitButton').on('click', function(){
     let salaryAm = $('.annual-salary').val();
 
     //Assign input values to table columns & append to DOM as a table row
-    $('.tablebod').append(`<tr><td>${firstN}</td><td>${lastN}</td><td>${idnum}</td><td>${Emtitle}</td><td>${salaryAm}</td> <td> <button type='submit' class='deletion'>Delete </button>
+    $('.tablebod').append(`<tr><td>${firstN}</td><td>${lastN}</td><td>${idnum}</td><td>${Emtitle}</td><td class="salAmount">${salaryAm}</td> <td> <button type='submit' class='btn btn-danger deletion'>Delete </button>
     </td> </tr>`);
    
-    $('.deletion').on('click', function (){
-        this.parent().parent().val('');
+    $('.deletion').on('click', function (event){
+         
+        const element = event.target;
+        $(element).closest('tr').remove();
+
+        let deletedAmount = Number($(element).closest('td').val()/12);
+        totalMonthly -= deletedAmount;
+        elAmount.empty();
+        elAmount.append(`Total Monthly: $` + totalMonthly);
+       
     });
 
     //emptying input fields
@@ -36,3 +44,5 @@ $('.submitButton').on('click', function(){
     $('.annual-salary').val('');
 });//end of anonymous function
 }//end of realready
+
+$(document).ready(realready);
