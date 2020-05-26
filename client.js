@@ -21,20 +21,34 @@ $('.submitButton').on('click', function(){
     let salaryAm = $('.annual-salary').val();
 
     //Assign input values to table columns & append to DOM as a table row
-    $('.tablebod').append(`<tr><td>${firstN}</td><td>${lastN}</td><td>${idnum}</td><td>${Emtitle}</td><td class="salAmount">${salaryAm}</td> <td> <button type='submit' class='btn btn-danger deletion'>Delete </button>
+    $('#tablebod').append(`<tr><td>${firstN}</td><td>${lastN}</td><td>${idnum}</td><td>${Emtitle}</td><td class="salAmount">${salaryAm}</td> <td> <button type='submit' class='btn btn-danger deletion'>Delete </button>
     </td> </tr>`);
    
-    $('.deletion').on('click', function (event){
-         
-        const element = event.target;
-        $(element).closest('tr').remove();
 
-        let deletedAmount = Number($(element).closest('td').val()/12);
-        totalMonthly -= deletedAmount;
-        elAmount.empty();
-        elAmount.append(`Total Monthly: $` + totalMonthly);
+
+
+    $('.deletion').on('click', function (event){
+        let thisTable = document.getElementById('tablebod');
+        
        
+        const element = event.target;
+
+        let elementRow = element.closest('tr');
+        elementRow.remove();
+        totalMonthly = 0;
+        for (let i = 0; i<thisTable.rows.length; i++) {
+            totalMonthly += Number(thisTable.rows[i].cells[4].innerText); 
+            
+        }
+        totalMonthly /= 12;
+        elAmount.empty();
+        elAmount.append(`Total Monthly: $` + totalMonthly );
+        
+        
+
     });
+
+   
 
     //emptying input fields
     $('.first-name').val('');
